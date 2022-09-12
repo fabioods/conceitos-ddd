@@ -1,3 +1,4 @@
+import { Customer } from '../entity/customer';
 import { Order } from '../entity/order';
 import { OrderItem } from '../entity/orderItem';
 import { OrderService } from './orderService';
@@ -14,5 +15,21 @@ describe('Order service test unit tests', () => {
     const orders = [order01, order02];
     const total = OrderService.calculateTotal(orders);
     expect(total).toBe(130);
+  });
+
+  it('should place an order', () => {
+    const customer = new Customer('1', 'Customer 01');
+    const orderItem01 = new OrderItem('1', 'Product 01', 10, 2);
+
+    const order = OrderService.placeOrder(customer, [orderItem01]);
+    expect(customer.rewardPoints).toBe(10);
+    expect(order.total()).toBe(20);
+  });
+
+  it('should throw when try to place an order', () => {
+    expect(() => {
+      const customer = new Customer('1', 'Customer 01');
+      const order = OrderService.placeOrder(customer, []);
+    }).toThrowError('Order items is required');
   });
 });
