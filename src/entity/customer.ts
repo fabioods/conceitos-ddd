@@ -1,17 +1,17 @@
 import { Address } from './address';
 
 export class Customer {
-  private id: string;
+  private _id: string;
 
-  private name: string;
+  private _name: string;
 
-  private address: Address;
+  private _address: Address;
 
-  private active = false;
+  private _active = false;
 
   constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
+    this._id = id;
+    this._name = name;
     this.validate();
   }
 
@@ -20,35 +20,43 @@ export class Customer {
   //   this.id = id;
   // }
 
+  get name() {
+    return this._name;
+  }
+
+  isActive() {
+    return this._active;
+  }
+
   defineAddress(address: Address) {
     if (!address) {
       throw new Error('Customer address is required');
     }
-    this.address = address;
+    this._address = address;
   }
 
   validate() {
-    if (!this.name) {
+    if (!this._name) {
       throw new Error('Customer name is required');
     }
-    if (!this.id) {
+    if (!this._id) {
       throw new Error('Customer id is required');
     }
   }
 
   changeName(name: string) {
-    this.name = name;
+    this._name = name;
     this.validate();
   }
 
   activate() {
-    if (!this.address) {
+    if (!this._address) {
       throw new Error('Customer address is required to active customer');
     }
-    this.active = true;
+    this._active = true;
   }
 
   inactivate() {
-    this.active = false;
+    this._active = false;
   }
 }
