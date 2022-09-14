@@ -1,7 +1,7 @@
-import { Address } from './entity/address';
-import { Customer } from './entity/customer';
-import { Order } from './entity/order';
-import { OrderItem } from './entity/orderItem';
+import { Address } from './domain/entity/address';
+import { Customer } from './domain/entity/customer';
+import { Order } from './domain/entity/order';
+import { OrderItem } from './domain/entity/orderItem';
 
 // Aqui temos um agregado
 const address = new Address('Rua 1', 1, '12345-678', 'São Paulo');
