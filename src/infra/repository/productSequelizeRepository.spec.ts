@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Product } from '../../domain/entity/product';
-import { ProductModel } from '../db/sequelize/model/Product.model';
-import { ProductRepositorySequelize } from './ProductRepositorySequelize';
+import { ProductModel } from '../db/sequelize/model/productModel';
+import { ProductSequelizeRepository } from './productSequelizeRepository';
 
 describe('Product Repository Sequelize Test', () => {
   let sequelize: Sequelize;
@@ -21,7 +21,7 @@ describe('Product Repository Sequelize Test', () => {
   });
 
   it('should create a new product', async () => {
-    const productRepository = new ProductRepositorySequelize();
+    const productRepository = new ProductSequelizeRepository();
     const product = new Product('1', 'Product 1', 10.0);
     await productRepository.create(product);
     const productModel = await ProductModel.findByPk(product.id);
@@ -30,7 +30,7 @@ describe('Product Repository Sequelize Test', () => {
   });
 
   it('should update a product', async () => {
-    const productRepository = new ProductRepositorySequelize();
+    const productRepository = new ProductSequelizeRepository();
     const product = new Product('1', 'Product 1', 10.0);
     await productRepository.create(product);
     product.changeName('Product 1 Updated');
@@ -43,7 +43,7 @@ describe('Product Repository Sequelize Test', () => {
   });
 
   it('should find all products', async () => {
-    const productRepository = new ProductRepositorySequelize();
+    const productRepository = new ProductSequelizeRepository();
     const product1 = new Product('1', 'Product 1', 10.0);
     const product2 = new Product('2', 'Product 2', 20.0);
     await productRepository.create(product1);
@@ -54,7 +54,7 @@ describe('Product Repository Sequelize Test', () => {
   });
 
   it('should find a product by id', async () => {
-    const productRepository = new ProductRepositorySequelize();
+    const productRepository = new ProductSequelizeRepository();
     const product = new Product('1', 'Product 1', 10.0);
     await productRepository.create(product);
     const productFound = await productRepository.find(product.id);
@@ -63,7 +63,7 @@ describe('Product Repository Sequelize Test', () => {
   });
 
   it('should throw an error when try to find a product by id', async () => {
-    const productRepository = new ProductRepositorySequelize();
+    const productRepository = new ProductSequelizeRepository();
     const errorExpect = 'Product not found';
     await expect(productRepository.find('1')).rejects.toThrowError(errorExpect);
   });
