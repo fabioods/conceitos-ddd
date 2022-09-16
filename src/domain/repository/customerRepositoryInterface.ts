@@ -1,4 +1,4 @@
-import { Customer } from '../entity/customer';
-import { RepositoryInterface } from './repositoryInterface';
+import { Customer } from '../entity/customer'
+import { RepositoryInterface } from './repositoryInterface'
 
-export type CustomerRepositoryInterface = RepositoryInterface<Customer>;
+export type CustomerRepositoryInterface = RepositoryInterface<Customer>

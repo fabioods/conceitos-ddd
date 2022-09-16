@@ -1,32 +1,32 @@
-import { OrderItem } from './orderItem';
+import { OrderItem } from './orderItem'
 
 export class Order {
-  private _id: string;
+  private readonly _id: string
 
-  private _customerId: string;
+  private readonly _customerId: string
 
-  private _items: OrderItem[] = [];
+  private readonly _items: OrderItem[] = []
 
-  constructor(id: string, customerId: string, items: OrderItem[]) {
-    this._id = id;
-    this._customerId = customerId;
-    this._items = items;
-    this.validate();
+  constructor (id: string, customerId: string, items: OrderItem[]) {
+    this._id = id
+    this._customerId = customerId
+    this._items = items
+    this.validate()
   }
 
-  total(): number {
-    return this._items.reduce((total, item) => total + item.total(), 0);
+  total (): number {
+    return this._items.reduce((total, item) => total + item.total(), 0)
   }
 
-  validate() {
+  validate () {
     if (!this._id) {
-      throw new Error('Order id is required');
+      throw new Error('Order id is required')
     }
     if (!this._customerId) {
-      throw new Error('Customer id is required');
+      throw new Error('Customer id is required')
     }
     if (this._items.length === 0) {
-      throw new Error('Order items is required');
+      throw new Error('Order items is required')
     }
   }
 }

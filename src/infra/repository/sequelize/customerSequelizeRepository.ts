@@ -1,12 +1,11 @@
-import { Address } from '../../../domain/entity/address';
-import { Customer } from '../../../domain/entity/customer';
-import { CustomerRepositoryInterface } from '../../../domain/repository/customerRepositoryInterface';
-import { CustomerModel } from '../../db/sequelize/model/customerModel';
+import { Address } from '../../../domain/entity/address'
+import { Customer } from '../../../domain/entity/customer'
+import { CustomerRepositoryInterface } from '../../../domain/repository/customerRepositoryInterface'
+import { CustomerModel } from '../../db/sequelize/model/customerModel'
 
 export class CustomerSequelizeRepository
-  implements CustomerRepositoryInterface
-{
-  async create(entity: Customer): Promise<void> {
+implements CustomerRepositoryInterface {
+  async create (entity: Customer): Promise<void> {
     await CustomerModel.create({
       id: entity.id,
       name: entity.name,
@@ -15,11 +14,11 @@ export class CustomerSequelizeRepository
       number: entity.address.number,
       zipcode: entity.address.zip,
       active: entity.isActive(),
-      rewardPoints: entity.rewardPoints,
-    });
+      rewardPoints: entity.rewardPoints
+    })
   }
 
-  async update(entity: Customer): Promise<void> {
+  async update (entity: Customer): Promise<void> {
     await CustomerModel.update(
       {
         id: entity.id,
@@ -29,22 +28,22 @@ export class CustomerSequelizeRepository
         number: entity.address.number,
         zipcode: entity.address.zip,
         active: entity.isActive(),
-        rewardPoints: entity.rewardPoints,
+        rewardPoints: entity.rewardPoints
       },
       {
         where: {
-          id: entity.id,
-        },
+          id: entity.id
+        }
       }
-    );
+    )
   }
 
-  async find(id: string): Promise<Customer> {
-    const customerModel = await CustomerModel.findByPk(id);
+  async find (id: string): Promise<Customer> {
+    const customerModel = await CustomerModel.findByPk(id)
     if (!customerModel) {
-      throw new Error('Customer not found');
+      throw new Error('Customer not found')
     }
-    const customer = new Customer(customerModel.id, customerModel.name);
+    const customer = new Customer(customerModel.id, customerModel.name)
     customer.defineAddress(
       new Address(
         customerModel.street,
@@ -52,16 +51,16 @@ export class CustomerSequelizeRepository
         customerModel.zipcode,
         customerModel.city
       )
-    );
-    customer.activate();
-    customer.addRewardPoints(customerModel.rewardPoints);
-    return customer;
+    )
+    customer.activate()
+    customer.addRewardPoints(customerModel.rewardPoints)
+    return customer
   }
 
-  async findAll(): Promise<Customer[]> {
-    const customerModels = await CustomerModel.findAll();
-    return customerModels.map(customerModel => {
-      const customer = new Customer(customerModel.id, customerModel.name);
+  async findAll (): Promise<Customer[]> {
+    const customerModels = await CustomerModel.findAll()
+    return customerModels.map((customerModel) => {
+      const customer = new Customer(customerModel.id, customerModel.name)
       customer.defineAddress(
         new Address(
           customerModel.street,
@@ -69,10 +68,10 @@ export class CustomerSequelizeRepository
           customerModel.zipcode,
           customerModel.city
         )
-      );
-      customer.activate();
-      customer.addRewardPoints(customerModel.rewardPoints);
-      return customer;
-    });
+      )
+      customer.activate()
+      customer.addRewardPoints(customerModel.rewardPoints)
+      return customer
+    })
   }
 }
