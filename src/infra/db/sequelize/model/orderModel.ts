@@ -1,0 +1,36 @@
+/* eslint-disable import/no-cycle */
+import {
+  BelongsTo,
+  Column,
+  ForeignKey,
+  HasMany,
+  Model,
+  PrimaryKey,
+  Table
+} from 'sequelize-typescript'
+import { CustomerModel } from './customerModel'
+import { OrderItemModel } from './orderItemModel'
+
+@Table({
+  tableName: 'orders',
+  timestamps: false
+})
+export class OrderModel extends Model {
+  @PrimaryKey
+  @Column
+  declare id: string
+
+  @ForeignKey(() => CustomerModel)
+  @Column({ allowNull: false })
+  declare customer_id: string
+
+  @BelongsTo(() => CustomerModel)
+  declare customer: CustomerModel
+
+  @Column({ allowNull: false })
+  declare total: number
+
+  @HasMany(() => OrderItemModel)
+  @Column
+  declare items: OrderItemModel[]
+}
