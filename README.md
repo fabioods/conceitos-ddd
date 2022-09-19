@@ -5,6 +5,22 @@
   </a>
 </p>
 
+### Setup configuration
+
+- Node 14.20.0
+- NPM 6.14.17
+### Install
+
+```sh
+  npm i
+```
+
+## Tests
+  
+  ```sh
+    npm run test
+  ```
+
 ## Author
 
 👤 **Fábio dos Santos**
