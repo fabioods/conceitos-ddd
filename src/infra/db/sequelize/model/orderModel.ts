@@ -31,6 +31,5 @@ export class OrderModel extends Model {
   declare total: number
 
   @HasMany(() => OrderItemModel)
-  @Column
   declare items: OrderItemModel[]
 }

@@ -34,7 +34,4 @@ export class OrderItemModel extends Model {
 
   @Column({ allowNull: false })
   declare quantity: number
-
-  @Column({ allowNull: false })
-  declare name: string
 }
