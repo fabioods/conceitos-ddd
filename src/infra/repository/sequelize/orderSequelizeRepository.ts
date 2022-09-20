@@ -3,11 +3,11 @@ import { Sequelize } from 'sequelize-typescript'
 import SequelizePackage from 'sequelize'
 import { Order } from '../../../domain/entity/order'
 import { OrderItem } from '../../../domain/entity/orderItem'
-import { RepositoryInterface } from '../../../domain/repository/repositoryInterface'
 import { OrderItemModel } from '../../db/sequelize/model/orderItemModel'
 import { OrderModel } from '../../db/sequelize/model/orderModel'
+import { OrderRepositoryInterface } from '../../../domain/repository/orderRepositoryInteface'
 
-export class OrderSequelizeRepository implements RepositoryInterface<Order> {
+export class OrderSequelizeRepository implements OrderRepositoryInterface {
   constructor (private readonly sequelize: Sequelize) {}
 
   async update (entity: Order): Promise<void> {
