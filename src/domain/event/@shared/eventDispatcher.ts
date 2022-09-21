@@ -7,37 +7,37 @@ interface EventHandlerType {
 }
 
 export class EventDispatcher implements EventDispatcherInterface {
-  private eventHandler: EventHandlerType = {}
+  private _eventHandlers: EventHandlerType = {}
 
   get eventHandlers (): EventHandlerType {
-    return this.eventHandler
+    return this._eventHandlers
   }
 
   notify (event: EventInterface) {
     const eventName = event.constructor.name
-    if (this.eventHandlers[eventName]) {
-      this.eventHandlers[eventName].forEach(handler => {
+    if (this._eventHandlers[eventName]) {
+      this._eventHandlers[eventName].forEach(handler => {
         handler.handle(event)
       })
     }
   }
 
   register (eventName: string, eventHandler: EventHandlerInterface<EventInterface>) {
-    if (!this.eventHandler[eventName]) {
-      this.eventHandler[eventName] = []
+    if (!this._eventHandlers[eventName]) {
+      this._eventHandlers[eventName] = []
     }
-    this.eventHandler[eventName].push(eventHandler)
+    this._eventHandlers[eventName].push(eventHandler)
   }
 
   unregister (eventName: string, eventHandler: EventHandlerInterface<EventInterface>) {
-    if (this.eventHandler[eventName]) {
-      // const index = this.eventHandler[eventName].indexOf(eventHandler)
-      // if (index !== -1) this.eventHandler[eventName].splice(index, 1)
-      this.eventHandler[eventName] = this.eventHandler[eventName].filter(handler => handler !== eventHandler)
+    if (this._eventHandlers[eventName]) {
+      // const index = this.eventHandlers[eventName].indexOf(eventHandlers)
+      // if (index !== -1) this.eventHandlers[eventName].splice(index, 1)
+      this._eventHandlers[eventName] = this._eventHandlers[eventName].filter(handler => handler !== eventHandler)
     }
   }
 
   unregisterAll () {
-    this.eventHandler = {}
+    this._eventHandlers = {}
   }
 }
