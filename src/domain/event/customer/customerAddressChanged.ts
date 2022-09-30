@@ -1,0 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { EventInterface } from '../@shared/eventInterface'
+
+export class CustomerAddressChangedEvent implements EventInterface {
+  dataTimeOccurred: Date
+  eventData: any
+
+  constructor (eventData: any) {
+    this.dataTimeOccurred = new Date()
+    this.eventData = eventData
+  }
+}
