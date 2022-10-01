@@ -8,7 +8,7 @@ import {
   PrimaryKey,
   Table
 } from 'sequelize-typescript'
-import { CustomerModel } from './customerModel'
+import { CustomerModel } from '../../../../customer/repository/sequelize/model/customerModel'
 import { OrderItemModel } from './orderItemModel'
 
 @Table({

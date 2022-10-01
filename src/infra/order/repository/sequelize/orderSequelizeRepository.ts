@@ -1,11 +1,11 @@
 
 import { Sequelize } from 'sequelize-typescript'
 import SequelizePackage from 'sequelize'
-import { Order } from '../../../domain/checkout/entity/order'
-import { OrderItem } from '../../../domain/checkout/entity/orderItem'
-import { OrderItemModel } from '../../db/sequelize/model/orderItemModel'
-import { OrderModel } from '../../db/sequelize/model/orderModel'
-import { OrderRepositoryInterface } from '../../../domain/checkout/repository/orderRepositoryInteface'
+import { OrderRepositoryInterface } from '../../../../domain/checkout/repository/orderRepositoryInteface'
+import { Order } from '../../../../domain/checkout/entity/order'
+import { OrderItem } from '../../../../domain/checkout/entity/orderItem'
+import { OrderItemModel } from './model/orderItemModel'
+import { OrderModel } from './model/orderModel'
 
 export class OrderSequelizeRepository implements OrderRepositoryInterface {
   constructor (private readonly sequelize: Sequelize) {}
