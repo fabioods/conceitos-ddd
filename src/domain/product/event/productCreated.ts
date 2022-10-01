@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EventInterface } from '../@shared/eventInterface'
 
-export class CustomerAddressChangedEvent implements EventInterface {
+import { EventInterface } from '../../shared/event/eventInterface'
+
+export class ProductCreatedEvent implements EventInterface {
   dataTimeOccurred: Date
   eventData: any
 
