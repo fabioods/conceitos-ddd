@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Address } from './address'
+import { Address } from '../valueObject/address'
 import { Customer } from './customer'
 
 describe('Customer tests', () => {
