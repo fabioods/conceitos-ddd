@@ -1,10 +1,8 @@
 import { ProductInterface } from './productInterface'
 
-export class Product implements ProductInterface {
+export class ProductSpecial implements ProductInterface {
   private readonly _id: string
-
   private _name: string
-
   private _price: number
 
   constructor (id: string, name: string, price: number) {
@@ -19,11 +17,11 @@ export class Product implements ProductInterface {
   }
 
   get name (): string {
-    return this._name
+    return `${this._name} - Special`
   }
 
   get price (): number {
-    return this._price
+    return this._price * 10
   }
 
   validate () {
